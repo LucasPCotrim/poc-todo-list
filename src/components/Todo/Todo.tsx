@@ -11,7 +11,6 @@ type TodoProps = {
 
 export default function Todo({ name, index, handleDelete }: TodoProps) {
   const [checked, setChecked] = useState(false);
-  console.log('index = ', index);
 
   const handleCheck = (event: React.MouseEvent<HTMLElement>) => {
     setChecked(!checked);

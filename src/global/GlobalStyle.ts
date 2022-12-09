@@ -140,8 +140,13 @@ const Global = css`
   body {
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
     background-color: #343434;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 
