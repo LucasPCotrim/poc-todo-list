@@ -3,8 +3,8 @@ import Todo from '../Todo/Todo';
 import { useState } from 'react';
 
 type CreateToDoFormProps = {
-  toDos: string[];
-  setToDos: (toDos: string[]) => void;
+  toDos: toDoType[];
+  setToDos: (toDos: toDoType[]) => void;
 };
 function CreateToDoForm({ toDos, setToDos }: CreateToDoFormProps) {
   const [form, setForm] = useState({
@@ -24,7 +24,7 @@ function CreateToDoForm({ toDos, setToDos }: CreateToDoFormProps) {
   };
   const executeCreateToDo = (event: React.FormEvent) => {
     event.preventDefault();
-    setToDos([...toDos, form.toDo]);
+    setToDos([...toDos, { name: form.toDo, checked: false }]);
     console.log(form);
     clearForm();
   };
@@ -49,11 +49,24 @@ function CreateToDoForm({ toDos, setToDos }: CreateToDoFormProps) {
   );
 }
 
+type toDoType = {
+  name: string;
+  checked: boolean;
+};
 export default function TodoList() {
-  const [toDos, setToDos] = useState([] as string[]);
+  const [toDos, setToDos] = useState([] as toDoType[]);
 
   const handleDelete = (index: number) => {
     setToDos(toDos.filter((todo, i) => i !== index));
+  };
+
+  const handleCheck = (index: number) => {
+    setToDos(
+      toDos.map((todo, i) => {
+        if (i === index) return { ...todo, checked: !todo.checked };
+        return todo;
+      })
+    );
   };
 
   return (
@@ -63,9 +76,11 @@ export default function TodoList() {
         {toDos.map((toDo, index) => (
           <Todo
             key={index}
-            name={toDo}
+            name={toDo.name}
+            checked={toDo.checked}
             index={index}
             handleDelete={handleDelete}
+            handleCheck={handleCheck}
           />
         ))}
       </TodoListContainer>
