@@ -1,8 +1,13 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const fadeInAnimation = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1;}
+`;
 
 export const TodoContainer = styled.div<{ checked: boolean }>`
   background-color: ${(props) => (props.checked ? '#659b6a' : '#ffffff')};
-  width: min(100%, 800px);
+  min-width: 100%;
   height: 100px;
   display: flex;
   flex-direction: row;
@@ -10,6 +15,10 @@ export const TodoContainer = styled.div<{ checked: boolean }>`
   align-items: center;
   padding: 15px;
   border-radius: 15px;
+  opacity: 0;
+  animation-name: ${fadeInAnimation};
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
 
   .todo-buttons {
     display: flex;
@@ -39,7 +48,7 @@ export const TodoContainer = styled.div<{ checked: boolean }>`
 
   .content {
     font-size: 20px;
-    color: #103558;
+    color: ${(props) => (props.checked ? 'white' : 'black')};
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */

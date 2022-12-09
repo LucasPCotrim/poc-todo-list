@@ -141,6 +141,7 @@ const Global = css`
     height: 100vh;
     width: 100vw;
     background-color: #343434;
+    font-family: 'Roboto', sans-serif;
 
     -ms-overflow-style: none;
     scrollbar-width: none;
