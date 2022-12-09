@@ -1,5 +1,14 @@
 import { HomePageContainer } from './HomePage.style';
 
-export default function HomePage(): JSX.Element {
-  return <HomePageContainer>HomePage</HomePageContainer>;
+type Props = {
+  children: React.ReactChild | React.ReactChild[];
+};
+
+export default function HomePage({ children }: Props) {
+  return (
+    <HomePageContainer>
+      <div className='top-logo'>To Do List</div>
+      {children}
+    </HomePageContainer>
+  );
 }
