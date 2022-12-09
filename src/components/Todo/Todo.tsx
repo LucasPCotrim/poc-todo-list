@@ -3,8 +3,15 @@ import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im';
 import { useState } from 'react';
 
-export default function Todo() {
+type TodoProps = {
+  name: string;
+  index: number;
+  handleDelete: (index: number) => void;
+};
+
+export default function Todo({ name, index, handleDelete }: TodoProps) {
   const [checked, setChecked] = useState(false);
+  console.log('index = ', index);
 
   const handleCheck = (event: React.MouseEvent<HTMLElement>) => {
     setChecked(!checked);
@@ -12,12 +19,12 @@ export default function Todo() {
 
   return (
     <TodoContainer checked={checked}>
-      <div className='content'>ToDo</div>
+      <div className='content'>{name}</div>
       <div className='todo-buttons'>
         <div className='status-icon' onClick={handleCheck}>
           {checked ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}
         </div>
-        <div className='delete-icon'>
+        <div className='delete-icon' onClick={() => handleDelete(index)}>
           <RiDeleteBin5Fill />
         </div>
       </div>
