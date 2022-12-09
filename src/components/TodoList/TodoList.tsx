@@ -7,7 +7,6 @@ export default function TodoList() {
       <TodoListContainer>
         <Todo />
         <Todo />
-        <Todo />
       </TodoListContainer>
     </>
   );

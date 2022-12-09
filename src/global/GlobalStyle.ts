@@ -138,7 +138,10 @@ const Global = css`
     }
   }
   body {
-    background-color: #333333;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: #343434;
   }
 `;
 
