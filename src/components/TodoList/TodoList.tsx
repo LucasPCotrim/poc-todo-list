@@ -25,7 +25,6 @@ function CreateToDoForm({ toDos, setToDos }: CreateToDoFormProps) {
   const executeCreateToDo = (event: React.FormEvent) => {
     event.preventDefault();
     setToDos([...toDos, { name: form.toDo, checked: false }]);
-    console.log(form);
     clearForm();
   };
   const invalidToDo = form.toDo === '';
@@ -34,15 +33,18 @@ function CreateToDoForm({ toDos, setToDos }: CreateToDoFormProps) {
     <>
       <CreateTodoFormContainer>
         <div className='form-title'>Create a To Do</div>
-        <form onSubmit={executeCreateToDo}>
+        <form onSubmit={executeCreateToDo} data-testid='create-todo-form'>
           <input
             name='toDo'
             type='text'
             onChange={handleForm}
             value={form.toDo}
             placeholder='Insert your To Do here'
+            data-testid='create-todo-form-input'
           />
-          <button disabled={invalidToDo}>submit</button>
+          <button disabled={invalidToDo} data-testid='create-todo-form-button'>
+            submit
+          </button>
         </form>
       </CreateTodoFormContainer>
     </>
@@ -72,7 +74,7 @@ export default function TodoList() {
   return (
     <>
       <CreateToDoForm toDos={toDos} setToDos={setToDos} />
-      <TodoListContainer>
+      <TodoListContainer data-testid='todo-list'>
         {toDos.map((toDo, index) => (
           <Todo
             key={index}

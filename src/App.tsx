@@ -8,7 +8,7 @@ function App() {
     <>
       <GlobalStyle />
       <HomePage>
-        <TodoList />
+        <TodoList data-testid='todo-list' />
       </HomePage>
     </>
   );
